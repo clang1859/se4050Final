@@ -66,7 +66,7 @@ switch($_GET["action"]) {
 <TITLE>Shopping Cart</TITLE>
 <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
-<link href="style.css" type="text/css" rel="stylesheet" />
+<link href="cartStyle.css" type="text/css" rel="stylesheet" />
 </HEAD>
 <BODY>
 	<div id="shopping-cart">
