@@ -1,5 +1,7 @@
 <?php
+	session_start();
 
+  if(!isset($_SESSION['user_id'])){//No session
     if( isset($_POST['uname'])) {
    	    $username = ($_POST['uname']);
    	}
@@ -17,21 +19,22 @@
 		die('Could not connect: ' . mysqli_error());
 	}
 
-	echo 'Connected successfully'."<br>";
-
-	$sql = "SELECT userName, password FROM Users WHERE userName = \"$username\"";
+	$sql = "SELECT userName, password,userID FROM Users WHERE userName = '" .$username."'";
 	$result = mysqli_query($conn, $sql);
 
-
-
 	if (mysqli_num_rows($result) > 0) {
-
-
 	    // output data of each row
 	    while($row = mysqli_fetch_assoc($result)) {
             if ($username==$row["userName"] && $password==$row["password"])
             {
-                echo "logged in successful yay";
+				$_SESSION['user_id']=$row['userID'];
+                $_SESSION['username']=$row['userName'];
+				if (isset ($_SESSION['url'])){
+					$url = $_SESSION['url'];
+				} else{
+				$url = "storefront.html";
+				}
+                header('Location: '.$url);
             }
             else
             {
@@ -39,8 +42,12 @@
             }
 	    }
 	} else {
-	    echo "0 results";
+	    echo "Register please!<br><br>";
+		echo '<a href="cart.php"> Back to cart page('.$_SESSION['username'].')</a>';
 	}
-
 	mysqli_close($conn);
+  }
+  else{ //logged in, have the session
+	  echo "You are already Logged as " .$_SESSION['username']."<br><br>";
+	}
 ?>

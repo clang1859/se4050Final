@@ -1,5 +1,5 @@
 body {
-	font-family: Arial;
+	font-family: 'Titillium Web', sans-serif;
 	color: #211a1a;
 	font-size: 0.9em;
 }
@@ -39,9 +39,7 @@ body {
 #cart{
 	margin-right: 5px;
 }
-.font{
-	font-family: 'Titillium Web', sans-serif;
-}
+
 .btnAddAction {
 	font-family: 'Titillium Web', sans-serif;
     padding: 5px 10px;
@@ -110,10 +108,10 @@ body {
     padding: 15px 15px 0px 15px;
     overflow: auto;
 }
-#login{
+#login01{
 	position:absolute; right: 6%; top:4%;
 }
-.div-3{
+#login02{
 	position:absolute; right:11%;top:3.5%;
 }
 #div-1{
@@ -126,7 +124,7 @@ body {
 	position:absolute; top:3%; left:6.5%;
 }
 .div-title{
-	font-size:36px;color: #cc7b68; font-family: 'Dancing Script', cursive; margin-left:3%;margin-top:6%;
+	font-size:36px;color: #cc7b68; font-family: 'Dancing Script', cursive; margin-left:3%;margin-top:3%;
 }
 .cart-item-image {
 	width: 255px;

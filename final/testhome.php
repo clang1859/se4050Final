@@ -49,7 +49,7 @@ switch($_GET["action"]) {
 		foreach($product_array as $key=>$value){
 	?>
 		<div class="product-item">
-			<form method="post" action="cart.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>">
+			<form method="post" action="testhome.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>">
 			<div class="product-image"><img src="<?php echo $product_array[$key]["image"]; ?>"></div>
 			<div class="product-tile-footer">
 			<div class="product-title"><?php echo $product_array[$key]["name"]; ?></div>

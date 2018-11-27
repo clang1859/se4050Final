@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="storefront.css">
+<link rel="stylesheet" href="register-login.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,12 +13,52 @@
 body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </style>
 <body class="w3-content" style="max-width:1200px">
-
+<!--------------------------------------Register---------------------------------------->
+<div id="register" class="modal" style="display:none">
+  <form class="modal-register animate" action="register.php" method="POST" enctype="multipart/form-data">
+  <center>
+    <div class="imgcontainer">
+	  <span onclick="document.getElementById('register').style.display='none'" class="close" title="Close Modal">&times;</span>
+	  <div>
+	    <input type="file" value="Upload" name="pic" id="pic" onchange="javascript:setImagePreview();" /><br>
+	  </div>
+	  <div data-role="fieldcontain">  
+			<div id="localImag"><img id="preview" src="images/icons/usericon.png" /></div>  
+	  </div>  
+    </div>
+    <div id="inputcontainer" class="container">
+      <input type="text" placeholder="Enter First Name" name="fName">
+	  <input type="text" placeholder="Enter Last Name" name="lName">
+      <input type="text" placeholder="Enter Username" name="uname" required>
+	  <input type="text" placeholder="Enter Email" name="email" required>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+      <button type="submit" class="registerbtn" onclick="success()">Register</button>
+	  <p class="p01">Already registered?<br><a href="#" onclick="login()" style="font-size:16px;">Login here</a></p>
+    </div>
+</center>
+  </form>
+</div>
+<!--------------------------------------login---------------------------------------->
+<div id="login" class="modal">
+	<form class="modal-login animate" action="login.php" method="POST">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('login').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img id="preview" src="images/icons/usericon.png" /><br>
+    </div>
+    <div class="container">
+      <input type="text" placeholder="Enter Username" name="uname" required>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+      <button class="loginbtn" type="submit" onclick="success()">Login</button>
+      <p class="psw">Forgot <a href="#">password?</a></span><br><br>
+	  Don't have an account? <a href="#" onclick="register()">Register </a></p>
+    </div>
+  </form>
+</div>
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
   <div class="w3-container w3-display-container w3-padding-16">
     <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
-    <h3 class="w3-wide"><img src="images/logo.jpeg" alt="logo" height="70px"></h3>
+    <h3 class="w3-wide"><img src="images/icons/logo.jpeg" alt="logo" height="70px"></h3>
   </div>
   <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
     <a onclick="expandDropdown(this.id)" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="clothes">
@@ -78,14 +119,16 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   <header class="w3-container w3-xlarge">
     <p class="w3-left">Homepage</p>
     <p class="w3-right">
-      <i class="fa fa-shopping-cart w3-margin-right"></i>
+      <a href="Cart.php"><img src="images/icons/carticon.png" width="30px" /></a>
       <i class="fa fa-search"></i>
     </p>
   </header>
+<a id="login01" style="text-decoration:none;font-size:14px;position:absolute; right: 9%; 
+	top:4.8%;" href="#" onclick="document.getElementById('login').style.display='block'">
+	<img title="Login !" src="images/icons/login.png" width="25px"/></a>
 
-
-
-  <!-- Product grid -->
+  <!-------------------------------------------- Product grid --------------------------------------------->
+<form method="post" action="storefront.php">
   <div class="w3-container w3-text-grey" id="jeans">
     <p>8 items</p>
   </div>
@@ -95,7 +138,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       <div class="w3-container">
         <img src="/w3images/jeans1.jpg" style="width:100%">
         <p>Ripped Skinny Jeans<br><b>$24.99</b></p>
-      </div>
+      </div><br><br><br>
       <div class="w3-container">
         <img src="/w3images/jeans2.jpg" style="width:100%">
         <p>Mega Ripped Jeans<br><b>$19.99</b></p>
@@ -105,14 +148,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <div class="w3-col l3 s6">
       <div class="w3-container">
         <div class="w3-display-container">
-          <img src="/w3images/jeans2.jpg" style="width:100%">
-          <span class="w3-tag w3-display-topleft">New</span>
+          <img src="images/inv/camera.jpg" style="width:100%">
+          <span class="w3-tag w3-display-topleft" name="quantity" value="1">New</span>
           <div class="w3-display-middle w3-display-hover">
-            <button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
+            <button type="submit" class="w3-button w3-black" name="add" value="2"> Buy now<i class="fa fa-shopping-cart"></i></button>
           </div>
         </div>
-        <p>Mega Ripped Jeans<br><b>$19.99</b></p>
-      </div>
+        <p>Camera<br><b>$1500.00</b></p>
+      </div><br><br><br>
       <div class="w3-container">
         <img src="/w3images/jeans3.jpg" style="width:100%">
         <p>Washed Skinny Jeans<br><b>$20.50</b></p>
@@ -123,16 +166,16 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       <div class="w3-container">
         <img src="/w3images/jeans3.jpg" style="width:100%">
         <p>Washed Skinny Jeans<br><b>$20.50</b></p>
-      </div>
+      </div><br><br><br>
       <div class="w3-container">
         <div class="w3-display-container">
-          <img src="/w3images/jeans4.jpg" style="width:100%">
+          <img src="images/inv/external-hard-drive.jpg" style="width:100%">
           <span class="w3-tag w3-display-topleft">Sale</span>
           <div class="w3-display-middle w3-display-hover">
-            <button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
+            <button type="submit" class="w3-button w3-black" name="add" value="3">Buy now <i class="fa fa-shopping-cart"></i></button>
           </div>
         </div>
-        <p>Vintage Skinny Jeans<br><b class="w3-text-red">$14.99</b></p>
+        <p>External Hard Drive<br><b class="w3-text-red">$200.00</b></p>
       </div>
     </div>
 
@@ -140,14 +183,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       <div class="w3-container">
         <img src="/w3images/jeans4.jpg" style="width:100%">
         <p>Vintage Skinny Jeans<br><b>$14.99</b></p>
-      </div>
+      </div><br><br><br>
       <div class="w3-container">
         <img src="/w3images/jeans1.jpg" style="width:100%">
         <p>Ripped Skinny Jeans<br><b>$24.99</b></p>
       </div>
     </div>
   </div>
-  
+  </form>
   <!-- Footer -->
   <footer class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
     <div class="w3-row-padding">
@@ -183,6 +226,58 @@ function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
     document.getElementById("myOverlay").style.display = "none";
 }
+
+var modal1 = document.getElementById('register');
+var modal2 = document.getElementById('login');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal1.style.display = "none";
+		modal2.style.display = "none";
+    }
+}
+function success(){
+	document.getElementById('register').style.display='none';
+	location.reload([bForceGet]);
+}
+function login(){
+	document.getElementById('register').style.display='none';
+	document.getElementById('login').style.display='block';
+}
+
+function register(){
+	document.getElementById('login').style.display='none';
+	document.getElementById('register').style.display='block';
+}
+function setImagePreview() {  
+        var preview, img_txt, localImag, file_head = document.getElementById("pic"),  
+        picture = file_head.value;  
+        if (!picture.match(/.jpg|.gif|.png|.bmp/i)) return alert("The format of the picture you uploaded is not correct, please reselect it！"),  
+        !1;  
+        if (preview = document.getElementById("preview"), file_head.files && file_head.files[0]) preview.style.display = "block",  
+            preview.style.width = "115px",  
+            preview.style.height = "115px",  
+            preview.src = window.navigator.userAgent.indexOf("Chrome") >= 1 || window.navigator.userAgent.indexOf("Safari") >= 1 ? window.webkitURL.createObjectURL(file_head.files[0]) : window.URL.createObjectURL(file_head.files[0]);  
+        else {  
+            file_head.select(),  
+            file_head.blur(),  
+            img_txt = document.selection.createRange().text,  
+            localImag = document.getElementById("localImag"),  
+            localImag.style.width = "115px",  
+            localImag.style.height = "115px";  
+            try {  
+                localImag.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)",  
+                localImag.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = img_txt  
+            } catch(f) {  
+                return alert("The format of the picture you uploaded is not correct, please reselect it！"),  
+                !1  
+            }  
+            preview.style.display = "none",  
+            document.selection.empty()  
+        }  
+        !0  
+    }  
 </script>
 
 </body>

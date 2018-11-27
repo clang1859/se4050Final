@@ -13,6 +13,14 @@ html{
 body{
 	margin:0
 }
+#login01{
+	position:absolute; 
+	right: 2%; 
+	top:1%;
+	font-size:12px;
+	text-decoration:none;
+	color:black;
+}
 article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{
 	display:block
 }
