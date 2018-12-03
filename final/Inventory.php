@@ -56,7 +56,7 @@
 		$result = mysqli_query($conn, $sql);
 		$id = mysqli_insert_id($conn);
 		// set code
-		$code = $category."-".$id;
+		$code = $name."-".$id;
 		$sql1 = "UPDATE Inventory SET code = '".$code."' WHERE Inventory.id = ".$id;
 		$result = mysqli_query($conn, $sql1);
 		

@@ -24,16 +24,16 @@ if(isset($_SESSION['add'])){
 if(!empty($action)) {
 switch($action) {
 	case "add":
-		if(!empty($_POST["quantity"])||!empty($code)) {//from product page or home page
-			$productByid = $db_handle->runQuery("SELECT * FROM Inventory WHERE code='" . $code . "'");
+		if(!empty($_POST["quantity"])||!empty($code)) {//from Inventory page or home page
+			$InventoryBycode = $db_handle->runQuery("SELECT * FROM Inventory WHERE code='" . $code . "'");
 			if(isset($code)){
-				$itemArray = array($productByid[0]["code"]=>array('id'=>$productByid[0]["id"],'name'=>$productByid[0]["name"], 'code'=>$productByid[0]["code"], 'quantity'=>1, 'price'=>$productByid[0]["price"], 'image'=>$productByid[0]["image"]));
+				$itemArray = array($InventoryBycode[0]["code"]=>array('id'=>$InventoryBycode[0]["id"],'name'=>$InventoryBycode[0]["name"], 'code'=>$InventoryBycode[0]["code"], 'quantity'=>1, 'price'=>$InventoryBycode[0]["price"], 'image'=>$InventoryBycode[0]["image"]));
 			}
 			else{
-				$itemArray = array($productByid[0]["code"]=>array('id'=>$productByid[0]["id"],'name'=>$productByid[0]["name"], 'code'=>$productByid[0]["code"], 'quantity'=>$_POST["quantity"], 'price'=>$productByid[0]["price"], 'image'=>$productByid[0]["image"]));
+				$itemArray = array($InventoryBycode[0]["code"]=>array('id'=>$InventoryBycode[0]["id"],'name'=>$InventoryBycode[0]["name"], 'code'=>$InventoryBycode[0]["code"], 'quantity'=>$_POST["quantity"], 'price'=>$InventoryBycode[0]["price"], 'image'=>$InventoryBycode[0]["image"]));
 			}
 			if(!empty($_SESSION["cart_item"])) {
-				if(in_array($productByid[0]["code"],array_keys($_SESSION["cart_item"]))) {
+				if(in_array($InventoryBycode[0]["code"],array_keys($_SESSION["cart_item"]))) {
 					foreach($_SESSION["cart_item"] as $k => $v) {
 							if($code == $k) {
 								if(empty($_SESSION["cart_item"][$k]["quantity"])) {
@@ -167,7 +167,7 @@ if(isset($_SESSION["cart_item"])){
 <table rules="rows" id="tbl-cart" style="width: 760px;">
 <tbody>
 <tr height="70px" style="font-size:15px;">
-<td style="text-align:left;">Product</td>
+<td style="text-align:left;">Inventory</td>
 <td style="text-align:center; width:150px;">Quantity</td>
 <td style="text-align:center;" >Price</td>
 <td style="text-align:center; width:40px">Remove</td>
@@ -185,7 +185,7 @@ if(isset($_SESSION["cart_item"])){
 						<td style="font-size:14px;"><?php echo $item["name"]; ?></td></tr>
 					<tr><td><?php echo "$ ".$item["price"]; ?></td></tr>
 					</table>
-				<td><div><center><input style="text-align:right; width:50px" type="number" class="product-quantity" name="quantity" min='1' value="<?php echo $item["quantity"] ?>" size="2" required="required" />
+				<td><div><center><input style="text-align:right; width:50px" type="number" class="Inventory-quantity" name="quantity" min='1' value="<?php echo $item["quantity"] ?>" size="2" required="required" />
 					</center><button type="submit"  name="update" value="<?php echo $item["code"]; ?>" class="btnAddAction" />Update</div></td>
 				<td  style="text-align:center;"><?php echo "$ ". number_format($item_price,2); ?></td>
 				<td style="text-align:center;"> <button type="submit" name="remove" value="<?php echo $item["code"]; ?>" style="background-color:white;" style="outline: none; width:100px;"><img src="images/icons/delete.png" width="20px" title="Remove Item" /></a></td>
@@ -203,7 +203,7 @@ if(isset($_SESSION["cart_item"])){
 <td align="center"><?php echo $total_quantity; ?></td>
 <td align="center"><strong><?php echo "$ ".number_format($total_price, 2); ?></strong></td>
 <form method="POST" action="Cart.php">
-<td><button type="submit" name="empty" href="cart.php" style="background-color: white;"><img src="images/icons/empty.png" width="35px" title="Empty cart !"/></a></td>
+<td><button type="submit" name="empty" href="Cart.php" style="background-color: white;"><img src="images/icons/empty.png" width="35px" title="Empty cart !"/></a></td>
 </form>
 </tr>
 </tbody>

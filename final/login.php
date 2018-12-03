@@ -43,7 +43,7 @@
 	    }
 	} else {
 	    echo "Register please!<br><br>";
-		echo '<a href="cart.php"> Back to cart page('.$_SESSION['username'].')</a>';
+		echo '<a href="Cart.php"> Back to cart page('.$_SESSION['username'].')</a>';
 	}
 	mysqli_close($conn);
   }

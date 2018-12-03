@@ -45,7 +45,7 @@ if(!empty($_FILES["pic"])){
 				
 				$sql3 = "UPDATE Users SET imageName = '".$newfile."' WHERE Users.userID = ".$id;
 				$result3 = mysqli_query($conn, $sql3);
-				
+				unlink($photo);
 					unlink($_SESSION['loginpic']);
 					unset($_SESSION['loginpic']);
 					unset($_FILES["pic"]);
@@ -69,13 +69,25 @@ if(!empty($_FILES["pic"])){
 </head>
 <body>
 <div id="leftcon">
-	<div id="leftcon">
 	<div>
-	<table id="t01" style="height:10%;">
-		<tr class="tr01"><td id="inv" class="td01" onclick="window.location.href='Inventory.php'">Inventory  &nbsp  List</td></tr>
+	   <table id="t01" style="height:10%;">
+<?php 
+	$sql5 = "SELECT * FROM Users WHERE Users.userID = '" .$id."'";
+	$result = mysqli_query($conn, $sql5);
+if (mysqli_num_rows($result) > 0) {
+	while($row = mysqli_fetch_assoc($result)) {
+	$admin = $row['admin'];
+	if($admin=='1'){ ?>
+	    <tr class="tr01"><td id="inv" class="td01" onclick="window.location.href='Inventory.php'">Inventory  &nbsp  List</td></tr>
+<?php  }
+	}
+} else {
+    	    echo "<br><br>ID = ".$id;
+    	    echo "<br>You couldn't view the Inventory.";
+    	}
+?>
 	</table>
-	<div>
-</div>
+    </div>
 </div>
 <div id="rightcon">
 <div style="position:absolute;margin-left:5.5%;top:3%;"><a href="storelisting.php" style="text-decoration:none; color:black;">Home</a>&nbsp&nbsp>&nbsp&nbspAccount Setting </div>
