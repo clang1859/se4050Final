@@ -36,9 +36,9 @@
     $path="./Images/User/";//定义一个上传后的目录
     
     //5.上传后的文件名定义(随机获取一个文件名)
-    $fileinfo=pathinfo($upfile["name"]);//解析上传文件名字
+    $extension = pathinfo($upfile["name"],PATHINFO_EXTENSION);//get the name of the uploaded file
     do{ 
-        $newfile=date("YmdHis").$uname.".".$fileinfo["extension"];
+        $newfile=date("YmdHis").$uname.".".$extension;
     }while(file_exists($path.$newfile));
     //6.执行文件上传
     //判断是否是一个上传的文件
@@ -58,7 +58,7 @@
 					if (isset ($_SESSION['url'])){
 						$url = $_SESSION['url'];
 					} else{
-					$url = "storefront.html";
+					$url = "storelisting.php";
 					}
 					header('Location: '.$url);
 				}

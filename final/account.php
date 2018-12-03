@@ -68,10 +68,18 @@ if(!empty($_FILES["pic"])){
 <link href="account.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
-<div id="leftcon"></div>
+<div id="leftcon">
+	<div id="leftcon">
+	<div>
+	<table id="t01" style="height:10%;">
+		<tr class="tr01"><td id="inv" class="td01" onclick="window.location.href='Inventory.php'">Inventory  &nbsp  List</td></tr>
+	</table>
+	<div>
+</div>
+</div>
 <div id="rightcon">
-<div style="position:absolute;margin-left:5.5%;top:3%;"><a href="storefront.html" style="text-decoration:none; color:black;">Home</a>&nbsp&nbsp>&nbsp&nbspAccount Setting </div>
-<a href="storefront.html">
+<div style="position:absolute;margin-left:5.5%;top:3%;"><a href="storelisting.php" style="text-decoration:none; color:black;">Home</a>&nbsp&nbsp>&nbsp&nbspAccount Setting </div>
+<a href="storelisting.php">
 <img style="margin-left:0.5%;margin-top:0.5%;" title="Back Home!" src="images/icons/home-1.png" width="25px"/></a>
 <h2 id="subtitle">Account Settings</h2>
 <hr class="hr" style="top:20%;"/>

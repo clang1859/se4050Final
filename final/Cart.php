@@ -2,7 +2,7 @@
 session_start();
 require_once("dbcontroller.php");
 $db_handle = new DBController();
-$_SESSION['url'] = $_SERVER['PHP_SELF'];
+$_SESSION['url'] = $_SERVER['REQUEST_URI'];
 
 if(isset($_POST['empty'])){
 	$action = "empty";}
@@ -150,8 +150,8 @@ else{
 
 	<div id="shopping-cart">
 	
-	<div id="div-1"><a href="storefront.html" class="link">Home</a>&nbsp&nbsp>&nbsp&nbspCart </div>
-	<a href="storefront.html">
+	<div id="div-1"><a href="storelisting.php" class="link">Home</a>&nbsp&nbsp>&nbsp&nbspCart </div>
+	<a href="storelisting.php">
 	<img class="div-2" title="Back Home!" src="images/icons/home-1.png" width="25px"/></a>
 	
 	<div class="div-title">Shopping Cart</div>
@@ -211,7 +211,7 @@ if(isset($_SESSION["cart_item"])){
   <?php
 } else {
 ?>
-<div id="no-records">Your Cart is Empty<br><br><a href="storefront.html">Back Home >></a></div>
+<div id="no-records">Your Cart is Empty<br><br><a href="storelisting.php">Back Home >></a></div>
 <?php 
 }
 ?>
